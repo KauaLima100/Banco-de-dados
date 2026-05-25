@@ -1,0 +1,36 @@
+1. A Estrutura (O Esqueleto do Banco)
+
+Primeiro, o professor criou o banco editora_db e começou a montar as tabelas.
+
+Ele fez primeiro as mais simples e independentes, tipo Autor, Editora e Genero. Depois, ele criou a tabela principal de Livro.
+E aqui ele já colocou as chaves estrangeiras (Foreign Keys), amarrando cada livro a uma editora e a um gênero.
+
+Como na vida real um livro pode ter vários autores e um autor escreve vários livros, o sor criou uma tabela associativa chamada Livro_Autor para cruzar esses IDs. 
+Ele usou a mesma lógica na tabela Ranking_Semanal, cruzando o livro com as datas do ranking para dizer a posição dele naquela semana.
+
+
+2. Colocando os Dados (Os INSERTs)
+
+Para a gente não ter que testar nossos códigos em tabelas vazias, o sor já meteu a mão na massa e deixou um monte de INSERT pronto no script. 
+Ele cadastrou uns 12 livros, vários autores, editoras e até simulou um histórico de posições no ranking. Com o banco populado assim, fica muito mais fácil visualizar o resultado das consultas.
+
+
+3. Extraindo as Informações (Os SELECTs)
+
+Aí vem a parte da lógica, onde a gente coloca a mão na massa. O sor preparou uma bateria de exercícios em formato de escadinha, indo do mais fácil ao mais difícil:
+
+
+O Feijão com Arroz (i ao iii): Ele começou pedindo uns SELECT básicos, tipo puxar todos os autores ou só as colunas de nome e ID.
+
+Tirando a Sujeira (iv ao vi): Quando a gente junta livros e autores, nomes repetidos aparecem. A gente usou o DISTINCT para limpar as duplicatas e trazer cada autor uma vez só.
+
+Buscas de Texto (vii ao xiii): Treinamos bastante o WHERE junto com o LIKE. O sor pediu pra gente filtrar só os autores que começavam com a letra 'M' ou que não começavam com 'L'.
+
+Organizando e Calculando (xiv ao xxi): Usamos o ORDER BY pra listar os preços do mais caro pro mais barato. 
+Também usamos as funções matemáticas direto no banco: COUNT pra ver quantos autores tinham, e MAX, MIN e AVG para achar o livro mais caro, o mais barato e a média de preços.
+
+Cruzando Tabelas (xxii e xxiii): Aqui a gente fez os famosos JOINs (usando a condição no WHERE). Cruzamos três tabelas pra mostrar o título do livro, a editora e o gênero, tudo na mesma linha.
+
+O Nível Chefão - Subqueries (xxiv e xxv): Pra fechar, o sor pediu umas consultas dentro de outras consultas. 
+Por exemplo: pra descobrir qual livro ficou mais semanas consecutivas no topo, a gente fez o banco descobrir qual era o número máximo primeiro (a consulta de dentro), 
+pra depois puxar o título do livro que tinha aquele número (a consulta de fora).
