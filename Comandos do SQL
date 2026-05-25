@@ -1,0 +1,51 @@
+1. DQL (Data Query Language) - Consultas
+
+Esta é a categoria focada exclusivamente em ler e buscar dados. É aqui que você passa a maior parte do tempo como analista de dados.
+
+SELECT: Busca dados de uma ou mais tabelas.
+
+2. DML (Data Manipulation Language) - Manipulação de Dados
+
+Comandos usados para modificar as informações (as linhas) que estão dentro das tabelas, mas sem alterar a estrutura da tabela em si.
+
+    INSERT: Adiciona novas linhas de dados a uma tabela.
+
+    UPDATE: Atualiza os dados de linhas já existentes.
+
+    DELETE: Apaga linhas específicas de uma tabela (Também exige WHERE).
+
+3. DDL (Data Definition Language) - Definição de Estrutura
+
+Comandos que mexem no esqueleto do banco de dados. Eles criam, alteram ou apagam tabelas, colunas e o próprio banco.
+
+    CREATE: Cria novos objetos (bancos de dados, tabelas, índices, visões).
+
+        Exemplo: CREATE TABLE clientes (...)
+
+    ALTER: Modifica a estrutura de um objeto existente (como adicionar uma nova coluna a uma tabela).
+
+        Exemplo: ALTER TABLE clientes ADD COLUMN telefone VARCHAR(15)
+
+    DROP: Apaga completamente um objeto (tabela, banco de dados) e todos os seus dados.
+
+    TRUNCATE: Esvazia rapidamente todos os dados de uma tabela, mas mantém a estrutura dela intacta (como se apagasse todas as linhas de uma vez só, mais rápido que o DELETE).
+
+    RENAME: Renomeia uma tabela ou coluna existente.
+
+4. TCL (Transaction Control Language) - Controle de Transações
+
+Estes comandos gerenciam as transações (uma sequência de comandos DML, como INSERT ou UPDATE). Eles garantem que um bloco de operações seja salvo com segurança ou desfeito em caso de erro.
+
+    COMMIT: Confirma e salva permanentemente as alterações feitas durante a transação atual.
+
+    ROLLBACK: Cancela a transação atual e desfaz todas as alterações feitas desde o último COMMIT.
+
+    SAVEPOINT: Cria um "ponto de salvamento" no meio de uma transação, permitindo que você dê um ROLLBACK apenas até aquele ponto, e não para o início de tudo.
+
+5. DCL (Data Control Language) - Controle de Acessos
+
+Comandos usados pelos administradores de banco de dados (DBAs) para controlar quem tem permissão para fazer o quê.
+
+    GRANT: Concede permissões específicas a um usuário (ex: permitir que o usuário "Joao" apenas faça SELECT, mas não DELETE).
+
+    REVOKE: Remove as permissões concedidas anteriormente a um usuário.
