@@ -1,0 +1,123 @@
+1. A Estrutura Básica
+
+Estes são os pilares de qualquer consulta estruturada.
+
+SELECT: Define quais colunas você quer retornar.
+
+Exemplo: SELECT nome, idade ou SELECT * (para todas as colunas).
+
+FROM: Define de qual tabela (ou tabelas) os dados serão buscados.
+
+Exemplo: FROM clientes
+
+AS (Alias): Usado para renomear temporariamente uma coluna ou tabela para facilitar a leitura.
+
+Exemplo: SELECT nome AS nome_cliente FROM clientes AS c
+
+2. Filtros e Condições
+
+Comandos usados para restringir os dados que a sua consulta vai retornar.
+
+WHERE: Filtra as linhas com base em uma condição específica antes de qualquer agrupamento.
+
+Exemplo: WHERE idade >= 18
+
+DISTINCT: Remove linhas duplicadas do resultado, retornando apenas valores únicos.
+
+Exemplo: SELECT DISTINCT cidade FROM clientes
+
+Operadores Lógicos (usados no WHERE):
+
+AND / OR: Combina múltiplas condições.
+
+IN: Verifica se o valor está dentro de uma lista WHERE estado IN ('SP', 'RJ').
+
+BETWEEN: Verifica se um valor está dentro de um intervalo WHERE idade BETWEEN 18 AND 30.
+
+LIKE: Busca por padrões em textos usando % (qualquer coisa) ou _ (um caractere). WHERE nome LIKE 'A%' (nomes que começam com A).
+
+IS NULL / IS NOT NULL: Verifica se a coluna está vazia.
+
+3. Agrupamento de Dados
+
+Usado principalmente quando você quer usar funções matemáticas (como SUM, COUNT, AVG).
+
+GROUP BY: Agrupa linhas que têm os mesmos valores em linhas de resumo.
+
+Exemplo: SELECT cidade, COUNT(*) FROM clientes GROUP BY cidade
+
+HAVING: Funciona exatamente como o WHERE, mas é usado para filtrar dados depois que eles foram agrupados pelo GROUP BY.
+
+Exemplo: HAVING COUNT(*) > 5 (apenas cidades com mais de 5 clientes).
+
+4. Junções (Juntando Tabelas)
+
+Usados no FROM para cruzar dados de duas ou mais tabelas.
+
+INNER JOIN (ou apenas JOIN): Retorna apenas os registros que têm correspondência nas duas tabelas.
+
+LEFT JOIN: Retorna todos os registros da tabela da esquerda e os correspondentes da direita.
+
+RIGHT JOIN: Retorna todos os registros da tabela da direita e os correspondentes da esquerda.
+
+FULL OUTER JOIN: Retorna todos os registros de ambas as tabelas, cruzando onde há correspondência.
+
+ON: Define a condição exata de como as tabelas se conectam.
+
+Exemplo: FROM clientes c INNER JOIN pedidos p ON c.id = p.cliente_id
+
+5. Ordenação e Paginação
+
+Para organizar a forma como o resultado final é exibido.
+
+ORDER BY: Ordena o resultado por uma ou mais colunas. Pode ser ASC (crescente - padrão) ou DESC (decrescente).
+
+Exemplo: ORDER BY idade DESC, nome ASC
+
+LIMIT (ou TOP no SQL Server): Limita a quantidade máxima de linhas que a consulta vai retornar.
+
+Exemplo: LIMIT 10
+
+OFFSET: Pula um número específico de linhas antes de começar a retornar os dados (muito usado com LIMIT para paginação).
+
+Exemplo: LIMIT 10 OFFSET 20 (Pula os 20 primeiros e pega os próximos 10).
+
+6. Operadores de Conjunto
+
+Usados para empilhar resultados de dois ou mais SELECTs diferentes.
+
+UNION: Junta os resultados de dois SELECTs e remove as duplicatas.
+
+UNION ALL: Junta os resultados de dois SELECTs e mantém as duplicatas (mais rápido que o UNION).
+
+INTERSECT: Retorna apenas as linhas que aparecem em ambos os SELECTs.
+
+EXCEPT (ou MINUS na Oracle): Retorna as linhas do primeiro SELECT que não estão no segundo.
+
+7. Comandos Avançados
+
+WITH (CTE - Common Table Expression): Cria uma tabela temporária que só existe durante a execução daquela consulta. Excelente para organizar queries gigantes.
+
+SQL
+
+
+WITH ClientesAtivos AS (
+
+    SELECT id, nome FROM clientes WHERE status = 'ativo'
+
+)SELECT * FROM ClientesAtivos;
+
+CASE WHEN: Funciona como um "If/Else" dentro do SELECT para criar lógicas customizadas coluna por coluna.
+
+SQL
+
+
+SELECT nome, 
+
+       CASE WHEN idade >= 18 THEN 'Maior' ELSE 'Menor' END AS status_idade FROM clientes;
+
+A Ordem Correta de Escrita:
+
+Se você for usar tudo em uma única query, a ordem obrigatória de escrita é:
+
+SELECT $\rightarrow$ FROM $\rightarrow$ JOIN $\rightarrow$ WHERE $\rightarrow$ GROUP BY $\rightarrow$ HAVING $\rightarrow$ ORDER BY $\rightarrow$ LIMIT
